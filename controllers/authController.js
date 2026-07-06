@@ -27,8 +27,7 @@ if (!passwordRegex.test(password)) {
     return res.status(400).json({
 
         success: false,
-
-        message: "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character."
+         message: "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character."
 
     });
 
@@ -40,6 +39,7 @@ if (!passwordRegex.test(password)) {
 
         if (existing.length > 0) {
             return res.status(409).json({
+                success: false,
                 message: "Email already exists"
             });
         }
@@ -63,18 +63,17 @@ if (!passwordRegex.test(password)) {
     ]
 );
 const verificationLink =
-`http://localhost:3000/api/auth/verify-email?token=${verificationToken}`;
+`${process.env.APP_URL}/api/auth/verify-email?token=${verificationToken}`;
 console.log("Verification Token:", verificationToken);
 console.log("Verification Link:", verificationLink);
 console.log("Sending email to:", email);
-await transporter.sendMail({
+transporter.sendMail({
 
     from: process.env.MAIL_FROM,
 
     to: email,
 
     subject: "Verify your SecureAuth-Pro account",
-
     html: `
 
         <h2>Welcome to SecureAuth-Pro</h2>
@@ -101,6 +100,8 @@ await transporter.sendMail({
 
     `
 
+}).catch(err => {
+    console.error("Verification email failed:", err.message);
 });
 console.log("✅ Verification email sent successfully");
         return res.status(201).json({
@@ -307,14 +308,14 @@ console.log("Database updated.");
         res.cookie("accessToken", accessToken, {
             httpOnly: true,
             sameSite: "Strict",
-            secure: false,
+            secure: process.env.NODE_ENV === "production",
             maxAge: 15 * 60 * 1000
         });
 
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
             sameSite: "Strict",
-            secure: false,
+            secure: process.env.NODE_ENV === "production",
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
         await loginHistory.saveLoginHistory(
@@ -335,16 +336,26 @@ const ip =
     req.socket.remoteAddress ||
     req.ip;
 
-await transporter.sendMail({
 
+// Send response immediately
+res.json({
+    success: true,
+    message: "Login successful",
+    user: {
+        id: user.id,
+        fullname: user.fullname,
+        email: user.email,
+        role: user.role
+    }
+});
+
+// Send login notification in background
+setImmediate(() => {
+transporter.sendMail({
     from: process.env.MAIL_FROM,
-
     to: user.email,
-
     subject: "🔐 New Login Detected - SecureAuth-Pro",
-
     html: `
-
         <h2>New Login Detected</h2>
 
         <p>Hello <b>${user.fullname}</b>,</p>
@@ -352,7 +363,6 @@ await transporter.sendMail({
         <p>Your account has just logged in successfully.</p>
 
         <table border="1" cellpadding="10" cellspacing="0">
-
             <tr>
                 <td><b>Time</b></td>
                 <td>${new Date().toLocaleString()}</td>
@@ -367,11 +377,11 @@ await transporter.sendMail({
                 <td><b>Browser</b></td>
                 <td>${browser}</td>
             </tr>
-             
-             <tr>
-        <td><b>Operating System</b></td>
-        <td>${os}</td>
-    </tr>
+
+            <tr>
+                <td><b>Operating System</b></td>
+                <td>${os}</td>
+            </tr>
         </table>
 
         <br>
@@ -383,29 +393,14 @@ await transporter.sendMail({
         <hr>
 
         <small>SecureAuth-Pro Security Team</small>
-
     `
-
+}).catch(err => {
+    console.error("Login email failed:", err.message);
 });
+    });
+return;
 
-        return res.json({
-
-            success: true,
-
-            message: "Login successful",
-
-            user: {
-                id: user.id,
-                fullname: user.fullname,
-                email: user.email,
-                role: user.role
-            }
-
-        });
-
-    }
-
-    catch (err) {
+    } catch (err) {
 
         console.error(err);
 
@@ -417,6 +412,7 @@ await transporter.sendMail({
     }
 
 };
+
 exports.refreshToken = async (req, res) => {
 
     try {
@@ -473,7 +469,7 @@ exports.refreshToken = async (req, res) => {
         res.cookie("accessToken", accessToken, {
             httpOnly: true,
             sameSite: "Strict",
-            secure: false,
+            secure: process.env.NODE_ENV === "production",
             maxAge: 15 * 60 * 1000
         });
 
@@ -782,8 +778,7 @@ exports.resendVerificationEmail = async (req, res) => {
         );
 
         const verificationLink =
-        `http://localhost:3000/api/auth/verify-email?token=${verificationToken}`;
-
+`${process.env.APP_URL}/api/auth/verify-email?token=${verificationToken}`;
         await transporter.sendMail({
 
             from: process.env.MAIL_FROM,
