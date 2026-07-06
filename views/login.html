@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>SecureAuth-Pro | Login</title>
+
+    <link rel="stylesheet"
+        href="/css/style.css">
+        <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="login-card">
+
+            <h1>
+
+<i class="fa-solid fa-shield-halved"></i>
+
+SecureAuth-Pro
+
+</h1>
+
+            <p>Secure Enterprise Authentication</p>
+
+            <form id="loginForm" autocomplete="off">
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                    autocomplete="off"
+                    required>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        autocomplete="off"
+                        required>
+
+                   <button
+type="button"
+id="togglePassword">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+                </div>
+                <div id="otpSection" style="display:none;">
+
+                    <input
+                    id="otp"
+                    type="text"
+                    placeholder="Enter Google Authenticator Code"
+                    maxlength="6">
+
+                </div>
+
+                <div class="remember-container">
+
+    <label class="remember-label">
+
+        <input
+            type="checkbox"
+            id="rememberMe">
+
+        <span>Remember Me</span>
+
+    </label>
+
+</div>
+
+                <button
+                    type="submit"
+                    class="login-btn">
+
+                    Login
+
+                </button>
+                <div id="message"></div>
+<div class="login-links">
+
+   <a href="#" id="forgotPasswordLink">
+    Forgot Password?
+</a>
+
+    <span>|</span>
+
+    <a href="#" id="resendVerification">
+        Resend Verification
+    </a>
+
+</div>
+
+<div class="divider">
+
+    <span>OR</span>
+
+</div>
+
+<div class="register-link">
+
+    <span>Don't have an account?</span>
+
+    <a href="/register">
+        Create Account
+    </a>
+
+</div>     
+                
+
+            </form>
+
+
+        </div>
+
+    </div>
+<div id="verifyModal" class="modal">
+
+    <div class="modal-content">
+
+        <span id="closeVerifyModal" class="close">&times;</span>
+
+        <h2>Resend Verification Email</h2>
+
+        <p>Enter your registered email address.</p>
+
+        <input
+            type="email"
+            id="verifyEmail"
+            placeholder="Enter your email">
+
+        <button id="sendVerificationBtn">
+            Send Verification Link
+        </button>
+
+        <p id="verifyMessage"></p>
+
+    </div>
+
+</div>
+<!-- Forgot Password Modal -->
+
+<div id="forgotModal" class="modal">
+
+    <div class="modal-content">
+
+        <span id="closeForgotModal" class="close">&times;</span>
+
+        <h2>Forgot Password</h2>
+
+        <p>Enter your registered email</p>
+
+        <input
+            type="email"
+            id="forgotEmail"
+            placeholder="Email">
+
+        <button id="sendResetBtn">
+
+            Send Reset Link
+
+        </button>
+
+        <p id="forgotMessage"></p>
+
+    </div>
+
+</div>
+    <script src="/js/login.js"></script>
+  
+
+</body>
+
+</html>

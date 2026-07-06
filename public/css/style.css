@@ -1,0 +1,521 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background: linear-gradient(
+    -45deg,
+    #020617,
+    #0f172a,
+    #1e293b,
+    #1e3a8a);
+background-size: 400% 400%;
+animation: bgAnimation 15s ease infinite;
+}
+
+form{
+
+    margin-top:25px;
+
+}
+
+@keyframes bgAnimation{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+body::before,
+body::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:.5;
+    z-index:-1;
+}
+
+body::before{
+
+    width:280px;
+
+    height:280px;
+
+    background:#1d4ed8;
+
+    top:5%;
+
+    left:5%;
+
+    opacity:.35;
+
+}
+
+body::after{
+
+    width:320px;
+
+    height:320px;
+
+    background:#312e81;
+
+    bottom:5%;
+
+    right:5%;
+
+    opacity:.35;
+
+}
+
+.container{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.login-card{
+
+    width:430px;
+
+    padding:35px;
+
+    border-radius:22px;
+
+    background:rgba(15,23,42,.45);
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+
+    color:white;
+
+}
+
+.login-card h1{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:40px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+    white-space:nowrap;
+
+}
+
+.login-card p{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+    color:#dbeafe;
+
+}
+
+input:not([type="checkbox"]){
+
+    width:100%;
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+input:not([type="checkbox"]):focus{
+
+    box-shadow:0 0 10px rgba(255,255,255,.6);
+
+}
+
+.password-box{
+
+    position:relative;
+
+}
+
+.password-box button{
+
+    position:absolute;
+
+    right:15px;
+
+    top:42%;
+
+    transform:translateY(-50%);
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    color:#333;
+
+    font-size:18px;
+
+}
+
+.login-btn{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.login-btn:hover{
+
+    transform:translateY(-2px);
+
+    background:#1d4ed8;
+
+}
+
+.login-btn:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+#message{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    font-weight:bold;
+
+}
+
+@media(max-width:500px){
+
+.login-card{
+
+width:90%;
+
+padding:30px;
+
+}
+
+}
+
+
+/* ===========================
+   Resend Verification Modal
+=========================== */
+
+.modal{
+
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+
+}
+
+.modal-content{
+
+    width:360px;
+    background:#fff;
+    padding:30px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+
+}
+
+.modal-content h2{
+
+    margin-bottom:15px;
+
+}
+
+.modal-content input{
+
+    width:100%;
+    padding:12px;
+    margin:15px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+    box-sizing:border-box;
+
+}
+
+.modal-content button{
+
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+
+}
+
+.modal-content button:hover{
+
+    background:#1d4ed8;
+
+}
+
+.close{
+
+    float:right;
+    font-size:28px;
+    cursor:pointer;
+
+}
+
+#verifyMessage{
+
+    margin-top:15px;
+    font-weight:bold;
+
+}
+/* ===========================
+   Login Links
+=========================== */
+
+.login-links{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:18px;
+
+}
+
+.login-links a{
+
+    color:#fff;
+
+    background:rgba(255,255,255,.12);
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    transition:.3s;
+
+}
+
+.login-links a:hover{
+
+    background:white;
+
+    color:#2563eb;
+
+    text-decoration:none;
+
+}
+
+.login-links span{
+
+    color:rgba(255,255,255,.7);
+
+}
+
+/* ===========================
+   Divider
+=========================== */
+
+.divider{
+
+    display:flex;
+
+    align-items:center;
+
+    margin:28px 0;
+
+}
+
+.divider::before,
+.divider::after{
+
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:rgba(255,255,255,.25);
+
+}
+
+.divider span{
+
+    padding:0 15px;
+
+    color:white;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+}
+
+/* ===========================
+   Register
+=========================== */
+
+.register-link{
+
+    text-align:center;
+
+}
+
+.register-link span{
+
+    color:white;
+
+    font-size:15px;
+
+}
+
+.register-link a{
+
+    display:block;
+
+    margin-top:10px;
+
+    color:#FFD54F;
+
+    font-weight:bold;
+
+    text-decoration:none;
+
+}
+
+.register-link a:hover{
+
+    text-decoration:underline;
+
+}
+/* ===========================
+   Remember Me
+=========================== */
+
+.remember-container{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin:18px 0;
+
+}
+
+.remember-label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:white;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+}
+
+.remember-label input{
+
+    width:18px;
+
+    height:18px;
+
+    margin:0;
+
+    padding:0;
+
+    flex:none;
+
+}
+/* ===================================
+   Login Card Animation
+=================================== */
+
+
+@keyframes fadeDown{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>SecureAuth-Pro Dashboard</title>
+
+<link rel="stylesheet"
+href="/css/dashboard.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+
+<h2>SecureAuth-Pro</h2>
+
+</div>
+
+<div class="nav-right">
+
+<span id="navUser">
+
+<i class="fa-solid fa-user"></i>
+
+Loading...
+
+</span>
+
+<button id="logoutBtn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+</div>
+
+</nav>
+
+<div class="container">
+
+<div class="welcome">
+
+<h1>
+
+Welcome Back 👋
+
+</h1>
+
+<p>
+
+Your account is protected using enterprise authentication.
+
+</p>
+
+</div>
+
+<div class="stats">
+
+<div class="stat-card">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+<h3>JWT</h3>
+
+<p>Active ✅</p>
+
+</div>
+
+<div class="stat-card">
+
+<i class="fa-solid fa-lock"></i>
+
+<h3>2FA</h3>
+
+<p id="twoFAStatus">Loading...</p>
+
+</div>
+
+<div class="stat-card">
+
+<i class="fa-solid fa-user-shield"></i>
+
+<h3>Role</h3>
+
+<p id="roleCard">User</p>
+
+</div>
+
+<div class="stat-card">
+
+<i class="fa-solid fa-circle-check"></i>
+
+<h3>Status</h3>
+
+<p>Online 🟢</p>
+
+</div>
+
+</div>
+
+<div class="profile-card">
+
+<h2>
+
+Account Information
+
+</h2>
+
+<hr>
+
+<p>
+
+<strong>Name :</strong>
+
+<span id="fullname"></span>
+
+</p>
+
+<p>
+
+<strong>Email :</strong>
+
+<span id="email"></span>
+
+</p>
+
+<p>
+
+<strong>Role :</strong>
+
+<span id="role"></span>
+
+</p>
+
+</div>
+
+<div class="actions">
+
+    <button id="enable2FA">
+        <i class="fa-solid fa-qrcode"></i>
+        Enable 2FA
+    </button>
+
+    <button id="changePassword">
+        <i class="fa-solid fa-key"></i>
+        Change Password
+    </button>
+
+    <button id="logoutAllDevices">
+        <i class="fa-solid fa-globe"></i>
+        Logout All Devices
+    </button>
+
+    <button id="logoutButton">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        Logout
+    </button>
+
+</div>
+<div class="profile-card">
+
+    <h2>Recent Login Activity</h2>
+
+    <hr>
+
+    <div id="loginHistory">
+
+        Loading...
+
+    </div>
+
+</div>
+<!-- 2FA Section -->
+
+<div id="twoFactorBox" style="display:none;margin-top:40px;">
+
+    <h2>Google Authenticator Setup</h2>
+
+    <br>
+
+    <img id="qrImage" width="250">
+
+    <br><br>
+
+    <strong>Secret Key</strong>
+
+    <p id="secretKey"></p>
+
+    <br>
+
+    <input
+        type="text"
+        id="otpCode"
+        placeholder="Enter 6-digit code">
+
+    <br><br>
+
+    <button id="verify2FA">
+
+        Verify & Enable
+
+    </button>
+
+</div>
+
+</div>
+<!-- Change Password Modal -->
+
+<div id="changePasswordModal" class="modal">
+
+    <div class="modal-content">
+
+        <span id="closeModal" class="close">&times;</span>
+
+        <h2>Change Password</h2>
+
+        <input
+            type="password"
+            id="currentPassword"
+            placeholder="Current Password">
+
+        <input
+            type="password"
+            id="newPassword"
+            placeholder="New Password">
+
+        <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm New Password">
+
+        <button id="savePassword">
+
+            Update Password
+
+        </button>
+
+        <div id="passwordMessage"></div>
+
+    </div>
+
+</div>
+
+<script src="/js/dashboard.js"></script>
+
+</body>
+
+</html>
