@@ -16,7 +16,9 @@ const app = express();
 app.use(helmet());
 
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: process.env.NODE_ENV === "production"
+        ? process.env.APP_URL
+        : "http://localhost:3000",
     credentials: true
 }));
 
@@ -38,10 +40,7 @@ app.use((req, res, next) => {
 });
 // Health check
 app.get("/", (req, res) => {
-    res.json({
-        status: "OK",
-        message: "SecureAuth-Pro API is running"
-    });
+    res.redirect("/login");
 });
 
 app.use(express.static("public"));
