@@ -76,22 +76,18 @@ body::after{
 }
 
 .container{
-
-    width:100%;
-
+    min-height:100vh;
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
+    padding:20px;
 }
 
 .login-card{
 
-    width:430px;
-
-    padding:35px;
+    width:100%;
+    max-width:420px;
+    padding:40px;
 
     border-radius:22px;
 
@@ -516,6 +512,87 @@ padding:30px;
 
         transform:translateY(0);
 
+    }
+
+}
+/* ===========================
+   Mobile Responsive
+=========================== */
+
+@media (max-width:768px){
+
+    body{
+        padding:20px;
+    }
+
+    .container{
+        padding:15px;
+    }
+
+    .login-card{
+        width:100%;
+        max-width:380px;
+        padding:30px 25px;
+        border-radius:16px;
+    }
+
+    .login-card h1{
+        font-size:28px;
+    }
+
+    .login-card p{
+        font-size:14px;
+    }
+
+    input{
+        padding:14px;
+        font-size:15px;
+    }
+
+    .login-btn{
+        padding:14px;
+        font-size:16px;
+    }
+
+    .login-links{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .login-links span{
+        display:none;
+    }
+
+    .register-link span{
+        display:block;
+        margin-bottom:8px;
+    }
+
+    .modal-content{
+        width:90%;
+        max-width:350px;
+        padding:25px;
+    }
+
+}
+
+@media (max-width:480px){
+
+    .login-card{
+        padding:25px 20px;
+    }
+
+    .login-card h1{
+        font-size:24px;
+    }
+
+    .remember-label{
+        font-size:14px;
+    }
+
+    .login-links a{
+        width:100%;
+        text-align:center;
     }
 
 }

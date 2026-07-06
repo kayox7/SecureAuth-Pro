@@ -201,7 +201,7 @@ nav{
 
     margin:18px 0;
 
-    font-size:18px;
+    font-size:16px;
 
 }
 
@@ -263,7 +263,8 @@ padding:20px;
 
 .nav-right{
 
-flex-direction:column;
+flex-wrap:wrap;
+    justify-content:center;
 
 }
 
@@ -283,6 +284,68 @@ flex-direction:column;
 
 width:100%;
 
+}
+  #logoutBtn{
+        width:100%;
+    }
+    .stat-card{
+    padding:22px;
+}
+}
+@media (max-width:480px){
+
+   nav{
+    padding:15px;
+}
+
+.nav-right{
+    width:100%;
+    flex-direction:column;
+    gap:12px;
+}
+    .container{
+        width:95%;
+        margin:20px auto;
+    }
+
+    .logo h2{
+        font-size:22px;
+    }
+
+    .welcome h1{
+        font-size:24px;
+    }
+
+    .welcome p{
+        font-size:15px;
+    }
+
+    .profile-card{
+        padding:20px;
+    }
+
+    .profile-card h2{
+        font-size:22px;
+    }
+
+    .profile-card p{
+        font-size:15px;
+    }
+
+    .stat-card{
+        padding:20px;
+    }
+
+    .stat-card i{
+        font-size:35px;
+    }
+
+    .modal-content{
+        width:95%;
+        padding:20px;
+    }
+    #logoutBtn{
+    width:100%;
 }
 
 }
@@ -320,7 +383,8 @@ padding:30px;
 
 border-radius:12px;
 
-width:400px;
+width:90%;
+max-width:400px;
 
 display:flex;
 
