@@ -107,8 +107,7 @@ exports.forgotPassword = async (req, res) => {
 
         // Reset Link
         const resetLink =
-            `http://localhost:3000/reset-password?token=${resetToken}`;
-
+    `${process.env.APP_URL}/reset-password?token=${resetToken}`;
         console.log("Sending reset email...");
 console.log(resetLink);
             // Send Email
