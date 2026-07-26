@@ -607,8 +607,8 @@ exports.changePassword = async (req, res) => {
             });
 
         }
-        const passwordRegex =
-/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+       const passwordRegex =
+/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
 
 if (!passwordRegex.test(newPassword)) {
 
